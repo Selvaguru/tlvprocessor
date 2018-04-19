@@ -29,6 +29,14 @@ public class TLVTest {
 	}
 
 	@Test
+	public void testTLVZeroLength() {
+		subject = new TLV("UPPRCS-0000-", 6, 4);
+		List<String> mockData = new ArrayList<>();
+		mockData.add("UPPRCS-");
+		assertEquals(subject.decode(), mockData);
+	}
+
+	@Test
 	public void testTLVDecodeFailure() {
 		subject = new TLV("NONCMD-0005-abcde", 6, 4);
 		List<String> mockData = new ArrayList<>();
