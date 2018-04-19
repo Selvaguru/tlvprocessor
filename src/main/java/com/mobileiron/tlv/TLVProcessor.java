@@ -26,7 +26,8 @@ public class TLVProcessor {
 					String tlvEncoded = scanner.next();
 					TLV tlvObject = new TLV(tlvEncoded, TYPE_LENGTH, VALUE_LENGTH);
 					List<String> decodedTLVs = tlvObject.decode();
-					for (Iterator<String> iterator = decodedTLVs.iterator(); iterator.hasNext();) {
+					Iterator<String> iterator = decodedTLVs.iterator();
+					while (iterator.hasNext()) {
 						String tlv = (String) iterator.next();
 						writer.println(tlv);
 					}

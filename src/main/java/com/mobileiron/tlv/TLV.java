@@ -19,18 +19,18 @@ public class TLV {
 		List<String> decodedTLVs = new ArrayList<>();
 		String tempTLV = tlvEncoded;
 		while (!tempTLV.isEmpty()) {
-			String type = tempTLV.substring(0, typeLength);
+			Type type = Type.getValueOf(tempTLV.substring(0, typeLength));
 			int length = Integer.parseInt(tempTLV.substring(typeLength + 1, typeLength + valueLength + 1));
 			String value = tempTLV.substring(typeLength + valueLength + 2, typeLength + valueLength + length + 2);
 
 			switch (type) {
-			case "UPPRCS":
+			case UPPRCS:
 				decodedTLVs.add(type + "-" + value.toUpperCase());
 				break;
-			case "REPLCE":
+			case REPLCE:
 				decodedTLVs.add(type + "-THIS STRING");
 				break;
-			default:
+			case NONE:
 				decodedTLVs.add("Type not valid");
 			}
 			tempTLV = tempTLV.substring(typeLength + valueLength + length + 2);
